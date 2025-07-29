@@ -37,12 +37,12 @@ const EditTaskForm = () => {
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Title */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Title">Title</label>
+                <label htmlFor="Title" className='font-bold'>Title</label>
                 <input {...register('title')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Title'/>
             </div>
             {/* Description */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Description">Description</label>
+                <label htmlFor="Description" className='font-bold'>Description</label>
                 <input {...register('description')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
             </div>
         </div>
@@ -50,7 +50,7 @@ const EditTaskForm = () => {
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Status */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Status">Status</label>
+                <label htmlFor="Status" className='font-bold'>Status</label>
                 <select {...register('status')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Status</option>
                     <option value="pending">Pending</option>
@@ -60,7 +60,7 @@ const EditTaskForm = () => {
             </div>
             {/* Priority */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Priority">Priority</label>
+                <label htmlFor="Priority" className='font-bold'>Priority</label>
                 <select {...register('priority')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Priority</option>
                     <option value="low">Low</option>
@@ -72,7 +72,7 @@ const EditTaskForm = () => {
         
         {/* Due Date */}
         <div className='md:w-1/2 flex flex-col gap-1'>
-            <label htmlFor="Due Date">Due Date</label>
+            <label htmlFor="Due Date" className='font-bold'>Due Date</label>
             <input {...register('dueDate')} type='date' className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
         </div>
         <button className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg text-white'>Edit Task</button>

@@ -33,13 +33,13 @@ const LoginForm = () => {
         <div className='flex flex-col gap-1 '>
             <label>Email</label>
             <input {...register('email')} type='email' placeholder='Enter email' 
-                className='bg-zinc-200 border-2 border-zinc-700 p-2 rounded-lg outline-0'/>
+                className='bg-zinc-300 border-2 border-zinc-500 p-2 rounded-lg outline-0'/>
         </div>
         {/* Password */}
         <div className='flex flex-col gap-1 '>
             <label>Password</label>
                 <input {...register('password')} type='password' placeholder='Enter password' 
-                    className='bg-zinc-200 border-2 border-zinc-700 p-2 rounded-lg outline-0'/>
+                    className='bg-zinc-300 border-2 border-zinc-500 p-2 rounded-lg outline-0'/>
         </div>
         <button className='w-full bg-cyan-600 hover:bg-cyan-700 p-2 cursor-pointer rounded-lg text-white'>Submit</button>
          <p>Don't Have An Account ? <Link href={`/register`} className='text-zinc-500 font-semibold'>Register Here</Link></p>

@@ -4,7 +4,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react'
 import toast from 'react-hot-toast';
-
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../ui/alert-dialog';
 const ViewTasks = () => {
   const queryClient = useQueryClient();
   const {data:tasks} = useGetTasks();
@@ -19,10 +21,10 @@ const ViewTasks = () => {
     })
   }
   return (
-     <div className=' bg-zinc-300 border-2 border-zinc-500 mt-5  rounded-lg overflow-x-auto'>
+     <div className=' bg-zinc-200  border-t-2 border-l-2 border-r-2 border-zinc-500 mt-5  rounded-lg overflow-x-auto'>
         <table className='w-full'>
             <thead>
-                <tr className='h-16 border-b-2 border-zinc-500'>
+                <tr className='h-16 border-b-2 border-zinc-500 bg-zinc-300'>
                     <th>S.N.</th>
                     <th>Title</th>
                     <th>Description</th>
@@ -35,18 +37,50 @@ const ViewTasks = () => {
             <tbody>
                 {tasks?.data?.map(
                     (task:{_id:string,title:string,description:string,status:string,priority:string,dueDate:Date},index:number) => 
-                    <tr key={task._id} className='h-16'>
+                    <tr key={task._id} className='h-16 border-b-2 border-zinc-500'>
                         <td className='text-center'>{index+1}</td>
                         <td className='text-center'>{task.title}</td>
                         <td className='text-center'>{task.description}</td>
                         <td className='text-center'>{task.status}</td>
                         <td className='text-center'>{task.priority}</td>
-                        <td>{new Date(task.dueDate).toDateString()}</td>
+                        <td className='text-center'>{new Date(task.dueDate).toDateString()}</td>
                         <td>
-                            <div className='flex gap-5 text-white'>
-                                <Link href={`/tasks/edit/${task._id}`}  
-                                className=' bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg'>Edit</Link>
-                                <button onClick={() => handleDeleteTask(task._id)} className='bg-red-600 hover:bg-red-700 cursor-pointer p-2 rounded-lg'>Delete</button>
+                            <div className='flex justify-center items-center'>
+                                <div className='flex gap-2 text-white'>
+
+                                    <Link href={`/tasks/edit/${task._id}`}  
+                                        className='flex gap-1 items-center bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg'>
+                                            <FaRegEdit />
+                                            <p>Edit</p>
+                                    </Link>
+                                    <AlertDialog>
+                                        <AlertDialogTrigger asChild>
+                                            <button  
+                                                className='flex gap-1 items-center bg-red-600 hover:bg-red-700 cursor-pointer p-2 rounded-lg'>
+                                                    <MdDelete />
+                                                    <p>Delete</p>
+                                            </button>
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    This action cannot be undone. This will permanently delete your
+                                                        task and remove your data from our servers.
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel className='cursor-pointer'>Cancel</AlertDialogCancel>
+                                                <AlertDialogAction 
+                                                    className='bg-red-600 hover:bg-red-700 cursor-pointer' 
+                                                    onClick={() => handleDeleteTask(task._id)}>
+                                                        Confirm
+                                                </AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+                        
+                                </div>
                             </div>
                         </td>
                     </tr>

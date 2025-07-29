@@ -25,12 +25,12 @@ const CreateTaskForm = () => {
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Title */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Title">Title</label>
-                <input {...register('title')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Title'/>
+                <label htmlFor="Title" className='font-bold'>Title <span className='text-red-600 text-xl'>*</span></label> 
+                <input {...register('title',{required:true})} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Title'/>
             </div>
             {/* Description */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Description">Description</label>
+                <label htmlFor="Description" className='font-bold'>Description</label>
                 <input {...register('description')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
             </div>
         </div>
@@ -38,8 +38,8 @@ const CreateTaskForm = () => {
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Status */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Status">Status</label>
-                <select {...register('status')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
+                <label htmlFor="Status" className='font-bold'>Status <span className='text-red-600 text-xl'>*</span></label>
+                <select {...register('status',{required:true})} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Status</option>
                     <option value="pending">Pending</option>
                     <option value="in-progress">In-Progress</option>
@@ -48,8 +48,8 @@ const CreateTaskForm = () => {
             </div>
             {/* Priority */}
             <div className='w-full flex flex-col gap-1'>
-                <label htmlFor="Priority">Priority</label>
-                <select {...register('priority')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
+                <label htmlFor="Priority" className='font-bold'>Priority <span className='text-red-600 text-xl'>*</span></label> 
+                <select {...register('priority',{required:true})} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Priority</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -60,9 +60,10 @@ const CreateTaskForm = () => {
         
         {/* Due Date */}
         <div className='md:w-1/2 flex flex-col gap-1'>
-            <label htmlFor="Due Date">Due Date</label>
+            <label htmlFor="Due Date" className='font-bold'>Due Date</label>
             <input {...register('dueDate')} type='date' className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
         </div>
+        <p className='font-semibold'>All marked with <span className='text-red-600 text-xl'>*</span> are required fields</p>
         <button className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg text-white'>Create Task</button>
     </form>
   )

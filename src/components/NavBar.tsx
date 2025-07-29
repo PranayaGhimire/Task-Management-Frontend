@@ -5,6 +5,8 @@ import { useAuth } from '@/context/AuthProvider'
 import toast from 'react-hot-toast'
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from './ui/alert-dialog'
+import { AlertDialogTrigger } from '@radix-ui/react-alert-dialog'
 const NavBar = () => {
     const {token,setToken}=useAuth();
      const router = useRouter();
@@ -16,7 +18,7 @@ const NavBar = () => {
     }
   return (
     <div className='flex justify-between px-5 items-center h-20 bg-gradient-to-tr from-teal-600 to-teal-800 text-white'>
-        <div>
+        <div className='text-xl font-bold'>
             Task Manager App    
         </div>
         {!token ? <div className='space-x-5'>
@@ -27,9 +29,27 @@ const NavBar = () => {
                 Login
             </Link>
         </div> :
-        <button onClick={handleLogout} className='bg-red-500 hover:bg-red-600 p-2 rounded-lg cursor-pointer'>
-            Logout
-        </button>}
+        <AlertDialog>
+            <AlertDialogTrigger asChild>
+                <button  className='bg-red-600 hover:bg-red-700 p-2 rounded-lg cursor-pointer'>
+                    Logout
+                </button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle> Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        This action cannot be undone. You will be logged out from your account.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel className='cursor-pointer'>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleLogout} 
+                    className='bg-red-600 hover:bg-red-700 cursor-pointer'>Confirm</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+      }
     </div>
   )
 }
