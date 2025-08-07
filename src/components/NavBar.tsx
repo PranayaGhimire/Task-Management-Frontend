@@ -14,11 +14,11 @@ const NavBar = () => {
         Cookies.remove("token");
         setToken(null);
         toast.success('User Logged Out Successfully');
-        router.push('/login');
+        router.push('/');
     }
   return (
     <div className='flex justify-between px-5 items-center h-20 bg-gradient-to-tr from-teal-600 to-teal-800 text-white'>
-        <div className='text-xl font-bold'>
+        <div className='md:text-xl font-bold'>
             Task Manager App    
         </div>
         {!token ? <div className='space-x-5'>
