@@ -22,7 +22,7 @@ const LoginForm = () => {
             localStorage.setItem('email',response?.data?.email);
             console.log(response);
             toast.success(response.message);
-            router.push('/tasks');
+            router.push('/');
         },
         onError: (error) => toast.error(error.message)
     })

@@ -19,7 +19,7 @@ const NavBar = () => {
   return (
     <div className='flex justify-between px-5 items-center h-20 bg-gradient-to-tr from-teal-600 to-teal-800 text-white'>
         <div className='md:text-xl font-bold'>
-            Task Manager App    
+            Task Management App    
         </div>
         {!token ? <div className='space-x-5'>
             <Link href={`/register`} className='bg-cyan-600 hover:bg-cyan-700 p-2 rounded-lg cursor-pointer'>

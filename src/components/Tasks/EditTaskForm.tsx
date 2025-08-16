@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { Button } from '../ui/button'
 
 const EditTaskForm = () => {
   const {id} = useParams<{id:string | undefined}>();
@@ -12,7 +13,7 @@ const EditTaskForm = () => {
   console.log(task);
   
   const router = useRouter();
-  const {mutate} = useUpdateTask();
+  const {mutate,isPending} = useUpdateTask();
   const {register,handleSubmit,reset} = useForm<ITasks>();
   const onSubmit = (data:ITasks) => {
       mutate({
@@ -27,10 +28,14 @@ const EditTaskForm = () => {
       });
   }
   useEffect(() => {
-    // reset({
-    //     title:
-    // })
-  },[]);
+    reset({
+        title:task?.data?.title,
+        description:task?.data?.description,
+        status:task?.data?.status,
+        priority:task?.data?.priority,
+        dueDate:task?.data?.dueDate.slice(0,10)
+    })
+  },[reset,task]);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
         {/* Title & Description */}
@@ -75,7 +80,8 @@ const EditTaskForm = () => {
             <label htmlFor="Due Date" className='font-bold'>Due Date</label>
             <input {...register('dueDate')} type='date' className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
         </div>
-        <button className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg text-white'>Edit Task</button>
+        <Button disabled={isPending} 
+        className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer'>{isPending ? 'Editing...' : 'Edit Task'}</Button>
     </form>
   )
 }

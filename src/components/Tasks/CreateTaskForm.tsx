@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 
 const CreateTaskForm = () => {
   const router = useRouter();
-  const {mutate} = useCreateTask();
+  const {mutate,isPending} = useCreateTask();
   const {register,handleSubmit} = useForm<ITasks>();
   const onSubmit = (data:ITasks) => {
       mutate(data,{
@@ -64,7 +64,8 @@ const CreateTaskForm = () => {
             <input {...register('dueDate')} type='date' className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
         </div>
         <p className='font-semibold'>All marked with <span className='text-red-600 text-xl'>*</span> are required fields</p>
-        <button className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg text-white'>Create Task</button>
+        <button disabled={isPending} 
+        className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg text-white'>{isPending ? 'Creating...' : 'Create Task'}</button>
     </form>
   )
 }
