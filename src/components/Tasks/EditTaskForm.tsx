@@ -37,7 +37,7 @@ const EditTaskForm = () => {
     })
   },[reset,task]);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
+    <form onSubmit={handleSubmit(onSubmit)} className='space-y-5 bg-white p-5 rounded-lg shadow-lg'>
         {/* Title & Description */}
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Title */}

@@ -42,7 +42,7 @@ const RegisterForm = () => {
             <input {...register('password')} type='password' placeholder='Enter password' 
                 className='bg-zinc-300 border-2 border-zinc-500 p-2 rounded-lg outline-0'/>
         </div>
-        <Button disabled={isPending} className=' bg-cyan-600 hover:bg-cyan-700 cursor-pointer'>Submit</Button>
+        <Button disabled={isPending} className=' bg-cyan-600 hover:bg-cyan-700 cursor-pointer'>{isPending ?'Submitting...':'Submit'}</Button>
         <p>Already Registered ? <Link href={`/login`} className='text-zinc-500 font-semibold'>Login Here</Link></p>
     </form>
   )

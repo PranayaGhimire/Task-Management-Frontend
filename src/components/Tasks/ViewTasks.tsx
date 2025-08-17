@@ -4,12 +4,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react'
 import toast from 'react-hot-toast';
-import { FaRegEdit } from "react-icons/fa";
+import { FaEye, FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../ui/alert-dialog';
+import { FadeLoader } from 'react-spinners';
 const ViewTasks = () => {
   const queryClient = useQueryClient();
-  const {data:tasks} = useGetTasks();
+  const {data:tasks,isLoading} = useGetTasks();
   console.log(tasks);
   const {mutate} = useDeleteTask();
   const handleDeleteTask = (id:string) => {
@@ -20,6 +21,7 @@ const ViewTasks = () => {
         } 
     })
   }
+  if(isLoading) return <FadeLoader color='teal' className='mt-5'/>
   return (
      <div className=' bg-zinc-200  border-t-2 border-l-2 border-r-2 border-zinc-500 mt-5  rounded-lg overflow-x-auto'>
         <table className='w-full'>
@@ -47,7 +49,11 @@ const ViewTasks = () => {
                         <td>
                             <div className='flex justify-center items-center'>
                                 <div className='flex gap-2 text-white'>
-
+                                    <Link href={`/tasks/view/${task._id}`}
+                                    className='flex gap-1 items-center bg-gray-500 hover:bg-gray-600 cursor-pointer p-2 rounded-lg'>
+                                        <FaEye />
+                                        <p>View</p>
+                                    </Link>
                                     <Link href={`/tasks/edit/${task._id}`}  
                                         className='flex gap-1 items-center bg-cyan-600 hover:bg-cyan-700 cursor-pointer p-2 rounded-lg'>
                                             <FaRegEdit />

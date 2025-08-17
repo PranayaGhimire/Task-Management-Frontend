@@ -20,7 +20,7 @@ const CreateTaskForm = () => {
       });
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
+    <form onSubmit={handleSubmit(onSubmit)} className='space-y-5 p-5 bg-white rounded-lg'>
         {/* Title & Description */}
         <div className='flex flex-col md:flex-row gap-5'>
             {/* Title */}

@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import Cookies from 'js-cookie';
 import { useAuth } from '@/context/AuthProvider';
 import { Button } from '../ui/button';
 const LoginForm = () => {
@@ -17,7 +16,6 @@ const LoginForm = () => {
   const onSubmit = (data:ILogin) => {
     mutate(data,{
         onSuccess: (response) => {
-            Cookies.set('token',response.token);
             setToken(response.token);
             localStorage.setItem('email',response?.data?.email);
             console.log(response);
