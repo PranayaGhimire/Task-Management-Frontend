@@ -5,9 +5,7 @@ const baseUrl = process.env.NEXT_PUBLIC_URL;
 export const useRegisterUser = () => 
     useMutation({
         mutationFn: async (data:IRegister) => {
-            const response = await axios.post(`${baseUrl}/auth/register`,data,{
-                withCredentials:true
-            });
+            const response = await axios.post(`${baseUrl}/auth/register`,data);
             return response.data;
         } 
     })
@@ -15,9 +13,7 @@ export const useRegisterUser = () =>
 export const useLoginUser = () => 
     useMutation({
         mutationFn: async (data:ILogin) => {
-            const response = await axios.post(`${baseUrl}/auth/login`,data,{
-                withCredentials:true
-            });
+            const response = await axios.post(`${baseUrl}/auth/login`,data);
             return response.data;
         }
     })
