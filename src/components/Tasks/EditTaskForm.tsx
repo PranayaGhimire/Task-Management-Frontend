@@ -33,7 +33,7 @@ const EditTaskForm = () => {
         description:task?.data?.description,
         status:task?.data?.status,
         priority:task?.data?.priority,
-        dueDate:task?.data?.dueDate.slice(0,10)
+        dueDate:task?.data?.dueDate?.slice(0,10)
     })
   },[reset,task]);
   return (
@@ -43,12 +43,12 @@ const EditTaskForm = () => {
             {/* Title */}
             <div className='w-full flex flex-col gap-1'>
                 <label htmlFor="Title" className='font-bold'>Title</label>
-                <input {...register('title')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Title'/>
+                <input {...register('title')} className='bg-gray-200 border-2 border-gray-500 p-3 rounded-lg outline-0' placeholder='Enter Task Title'/>
             </div>
             {/* Description */}
             <div className='w-full flex flex-col gap-1'>
                 <label htmlFor="Description" className='font-bold'>Description</label>
-                <input {...register('description')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
+                <input {...register('description')} className='bg-gray-200 border-2 border-gray-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
             </div>
         </div>
         {/* Status & Priority */}
@@ -56,7 +56,7 @@ const EditTaskForm = () => {
             {/* Status */}
             <div className='w-full flex flex-col gap-1'>
                 <label htmlFor="Status" className='font-bold'>Status</label>
-                <select {...register('status')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
+                <select {...register('status')} className='bg-gray-200 border-2 border-gray-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Status</option>
                     <option value="pending">Pending</option>
                     <option value="in-progress">In-Progress</option>
@@ -66,7 +66,7 @@ const EditTaskForm = () => {
             {/* Priority */}
             <div className='w-full flex flex-col gap-1'>
                 <label htmlFor="Priority" className='font-bold'>Priority</label>
-                <select {...register('priority')} className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0'>
+                <select {...register('priority')} className='bg-gray-200 border-2 border-gray-500 p-3 rounded-lg outline-0'>
                     <option value="">Select Task Priority</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -78,7 +78,7 @@ const EditTaskForm = () => {
         {/* Due Date */}
         <div className='md:w-1/2 flex flex-col gap-1'>
             <label htmlFor="Due Date" className='font-bold'>Due Date</label>
-            <input {...register('dueDate')} type='date' className='bg-zinc-300 border-2 border-zinc-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
+            <input {...register('dueDate')} type='date' className='bg-zinc-200 border-2 border-gray-500 p-3 rounded-lg outline-0' placeholder='Enter Task Description'/>
         </div>
         <Button disabled={isPending} 
         className='bg-cyan-600 hover:bg-cyan-700 cursor-pointer'>{isPending ? 'Editing...' : 'Edit Task'}</Button>

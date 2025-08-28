@@ -23,10 +23,10 @@ const ViewTasks = () => {
   }
   if(isLoading) return <FadeLoader color='teal' className='mt-5'/>
   return (
-     <div className=' bg-zinc-200  border-t-2 border-l-2 border-r-2 border-zinc-500 mt-5  rounded-lg overflow-x-auto'>
+     <div className=' bg-gray-200  border-t-2 border-l-2 border-r-2 border-zinc-500 mt-5  rounded-lg overflow-x-auto'>
         <table className='w-full'>
             <thead>
-                <tr className='h-16 border-b-2 border-zinc-500 bg-zinc-300'>
+                <tr className='h-16 border-b-2 border-zinc-500 bg-gray-300'>
                     <th>S.N.</th>
                     <th>Title</th>
                     <th>Description</th>
