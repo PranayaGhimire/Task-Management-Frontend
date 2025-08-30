@@ -5,15 +5,12 @@ import React, { useEffect, useState } from 'react'
 import { FadeLoader } from 'react-spinners';
 
 const ProtectedRoute = ({children}:{children:React.ReactNode}) => {
-    const {token} = useAuth();
+    const {token, loading} = useAuth();
     const router = useRouter();
-    const [loading,setLoading] = useState(true);
     useEffect(() => {
-        if(!token)
+        if(!loading && !token)
             router.push("/login");
-        else
-            setLoading(false);
-    },[]);
+    },[token,loading,router]);
     if(loading) return <div className='min-h-screen flex justify-center items-center'><FadeLoader color='teal'/></div>
   return (
     <>

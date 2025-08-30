@@ -11,7 +11,8 @@ export interface ILogin {
 
 export interface IAuthContextProps {
     token:string | null,
-    setToken: (token: string | null) => void
+    setToken: (token: string | null) => void,
+    loading:boolean
 }
 
 export interface ITasks{
@@ -20,4 +21,9 @@ export interface ITasks{
     status:string,
     priority:string,
     dueDate:Date
+}
+
+export interface ITasksProps{
+    taskStatus:string | undefined,
+    taskPriority:string | undefined
 }

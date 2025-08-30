@@ -8,7 +8,8 @@ import { FaEye, FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../ui/alert-dialog';
 import { FadeLoader } from 'react-spinners';
-const ViewTasks = () => {
+import { ITasksProps } from '@/types/type';
+const ViewTasks = ({taskStatus,taskPriority}:ITasksProps) => {
   const queryClient = useQueryClient();
   const {data:tasks,isLoading} = useGetTasks();
   console.log(tasks);
@@ -28,29 +29,33 @@ const ViewTasks = () => {
             <thead>
                 <tr className='h-16 border-b-2 border-zinc-500 bg-gray-300'>
                     <th>S.N.</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Due Date</th>
+                    <th className='hidden md:table-cell'>Title</th>
+                    <th className='hidden md:table-cell'>Description</th>
+                    <th className='hidden md:table-cell'>Status</th>
+                    <th className='hidden md:table-cell'>Priority</th>
+                    <th className='hidden md:table-cell'>Due Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {tasks?.data?.map(
+                {tasks?.data?.filter((task:{status:string,priority:string}) =>{
+                    const matchStatus = taskStatus === "" || taskStatus === task?.status;
+                    const matchPriority = taskPriority === "" || taskPriority === task?.priority;
+                    return matchStatus && matchPriority;
+                } ).map(
                     (task:{_id:string,title:string,description:string,status:string,priority:string,dueDate:Date},index:number) => 
                     <tr key={task._id} className='h-16 border-b-2 border-zinc-500'>
                         <td className='text-center'>{index+1}</td>
-                        <td className='text-center'>{task.title}</td>
-                        <td className='text-center'>{task.description}</td>
-                        <td className='text-center'>{task.status}</td>
-                        <td className='text-center'>{task.priority}</td>
-                        <td className='text-center'>{new Date(task.dueDate).toDateString()}</td>
+                        <td className='hidden md:table-cell text-center'>{task.title}</td>
+                        <td className='hidden md:table-cell text-center'>{task.description}</td>
+                        <td className='hidden md:table-cell text-center'>{task.status}</td>
+                        <td className='hidden md:table-cell text-center'>{task.priority}</td>
+                        <td className='hidden md:table-cell text-center'>{new Date(task.dueDate).toDateString()}</td>
                         <td>
                             <div className='flex justify-center items-center'>
                                 <div className='flex gap-2 text-white'>
                                     <Link href={`/tasks/view/${task._id}`}
-                                    className='flex gap-1 items-center bg-gray-500 hover:bg-gray-600 cursor-pointer p-2 rounded-lg'>
+                                    className='flex gap-1 items-center bg-teal-600 hover:bg-teal-700 cursor-pointer p-2 rounded-lg'>
                                         <FaEye />
                                         <p>View</p>
                                     </Link>
