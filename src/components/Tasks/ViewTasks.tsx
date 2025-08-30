@@ -29,7 +29,7 @@ const ViewTasks = ({taskStatus,taskPriority}:ITasksProps) => {
             <thead>
                 <tr className='h-16 border-b-2 border-zinc-500 bg-gray-300'>
                     <th>S.N.</th>
-                    <th className='hidden md:table-cell'>Title</th>
+                    <th>Title</th>
                     <th className='hidden md:table-cell'>Description</th>
                     <th className='hidden md:table-cell'>Status</th>
                     <th className='hidden md:table-cell'>Priority</th>
@@ -46,7 +46,7 @@ const ViewTasks = ({taskStatus,taskPriority}:ITasksProps) => {
                     (task:{_id:string,title:string,description:string,status:string,priority:string,dueDate:Date},index:number) => 
                     <tr key={task._id} className='h-16 border-b-2 border-zinc-500'>
                         <td className='text-center'>{index+1}</td>
-                        <td className='hidden md:table-cell text-center'>{task.title}</td>
+                        <td className=' text-center'>{task.title}</td>
                         <td className='hidden md:table-cell text-center'>{task.description}</td>
                         <td className='hidden md:table-cell text-center'>{task.status}</td>
                         <td className='hidden md:table-cell text-center'>{task.priority}</td>
