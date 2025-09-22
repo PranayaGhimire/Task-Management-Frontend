@@ -8,6 +8,7 @@ import React, { useState } from "react";
 const TasksPage = () => {
   const [taskStatus,setTaskStatus] = useState("");
   const [taskPriority,setTaskPriority] = useState("");
+  const [isOpen,setIsOpen] = useState(false);
   return (
     <ProtectedRoute>
       <div className="p-10 space-y-5 min-h-screen">
@@ -24,6 +25,10 @@ const TasksPage = () => {
               </Button>
               
               <div className="space-x-5 space-y-3 mt-3">
+                  <Button onClick={() => setIsOpen(true)} 
+                  className="w-28 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">
+                    Load Tasks
+                  </Button>                
                   <select onChange={(e) => setTaskStatus(e.target.value)} 
                   className="w-28 bg-gray-200 p-2 rounded-lg border-2 border-gray-400">
                     <option value="">All</option>
@@ -41,7 +46,7 @@ const TasksPage = () => {
               </div>
           </div>
 
-          <ViewTasks taskStatus={taskStatus} taskPriority={taskPriority} />
+          {isOpen && <ViewTasks taskStatus={taskStatus} taskPriority={taskPriority} />}
         </div>
       </div>
     </ProtectedRoute>

@@ -90,7 +90,6 @@ const ViewTasks = ({taskStatus,taskPriority}:ITasksProps) => {
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
-                        
                                 </div>
                             </div>
                         </td>
