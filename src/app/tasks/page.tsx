@@ -24,25 +24,25 @@ const TasksPage = () => {
                 </Link>  
               </Button>
               
-              <div className="space-x-5 space-y-3 mt-3">
-                  <Button onClick={() => setIsOpen(true)} 
-                  className="w-28 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">
-                    Load Tasks
-                  </Button>                
+              <div className="space-x-5 space-y-3 mt-3">             
                   <select onChange={(e) => setTaskStatus(e.target.value)} 
-                  className="w-28 bg-gray-200 p-2 rounded-lg border-2 border-gray-400">
+                  className="w-28 bg-gray-200 p-1.5 rounded-lg border-2 border-gray-400">
                     <option value="">All</option>
                     <option value="pending">Pending</option>
                     <option value="in-progress">In Progress</option>
                     <option value="completed">Completed</option>
                   </select>
                   <select onChange={(e) => setTaskPriority(e.target.value)} 
-                  className="w-28 bg-gray-200 p-2 rounded-lg border-2 border-gray-400">
+                  className="w-28 bg-gray-200 p-1.5 rounded-lg border-2 border-gray-400">
                     <option value="">All</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                   </select>
+                  <Button onClick={() => setIsOpen(true)} 
+                  className="w-28 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">
+                    Load Tasks
+                  </Button>   
               </div>
           </div>
 
